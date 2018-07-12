@@ -37,6 +37,7 @@ class DayMenu(models.Model):
 
 class WeekMenu(models.Model):
     pass
+    pass
 
 
 class UserProfile(models.Model):
