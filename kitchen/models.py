@@ -6,16 +6,37 @@ from django.contrib.auth.models import User
 
 
 class MenuItem(models.Model):
-    item = models.TextField()
-    price = models.DecimalField(decimal_places=2)
-    weight = models.SmallIntegerField()
-    pub_date = models.DateTimeField('date published')
+    item = models.CharField(max_length=200)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
+    pub_date = models.DateTimeField('date entered', auto_now_add=True)
 
 
-class Menu(models.Model):
+class DayMenu(models.Model):
+    Monday = 'Пн'
+    Tuesday = 'Вт'
+    Wednesday = 'Ср'
+    Thursday = 'Чт'
+    Friday = 'Пт'
+    Saturday = 'Сб'
+    Sunday = 'Вс'
+    WEEK_DAY_CHOICES = (
+        (Monday, 'Понедельник'),
+        (Tuesday, 'Вторник'),
+        (Wednesday, 'Среда'),
+        (Thursday, 'Четверг'),
+        (Friday, 'Пятница'),
+        (Saturday, 'Суббота'),
+        (Sunday, 'Воскресенье'),
+    )
+
     blob = models.ForeignKey(MenuItem, blank=True, null=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=150)
-    lock_key = models.SmallIntegerField(unique_for_date=True)
+    created = models.DateTimeField('date published', auto_now_add=True)
+
+
+class WeekMenu(models.Model):
+    pass
 
 
 class UserProfile(models.Model):
