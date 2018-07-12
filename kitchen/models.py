@@ -13,24 +13,24 @@ class MenuItem(models.Model):
 
 
 class DayMenu(models.Model):
-    Monday = 'Пн'
-    Tuesday = 'Вт'
-    Wednesday = 'Ср'
-    Thursday = 'Чт'
-    Friday = 'Пт'
-    Saturday = 'Сб'
-    Sunday = 'Вс'
-    WEEK_DAY_CHOICES = (
-        (Monday, 'Понедельник'),
-        (Tuesday, 'Вторник'),
-        (Wednesday, 'Среда'),
-        (Thursday, 'Четверг'),
-        (Friday, 'Пятница'),
-        (Saturday, 'Суббота'),
-        (Sunday, 'Воскресенье'),
-    )
+    # Monday = 'Пн'
+    # Tuesday = 'Вт'
+    # Wednesday = 'Ср'
+    # Thursday = 'Чт'
+    # Friday = 'Пт'
+    # Saturday = 'Сб'
+    # Sunday = 'Вс'
+    # WEEK_DAY_CHOICES = (
+    #     (Monday, 'Понедельник'),
+    #     (Tuesday, 'Вторник'),
+    #     (Wednesday, 'Среда'),
+    #     (Thursday, 'Четверг'),
+    #     (Friday, 'Пятница'),
+    #     (Saturday, 'Суббота'),
+    #     (Sunday, 'Воскресенье'),
+    # )
 
-    blob = models.ForeignKey(MenuItem, blank=True, null=True, on_delete=models.SET_NULL)
+    blob = models.ManyToManyField(MenuItem, blank=True, null=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=150)
     created = models.DateTimeField('date published', auto_now_add=True)
 
